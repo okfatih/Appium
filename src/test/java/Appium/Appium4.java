@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Appium2 {
+public class Appium4 {
     @Test
     public void test01() throws MalformedURLException, InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -26,21 +26,36 @@ public class Appium2 {
         capabilities.setCapability("appPackage", "com.davemac327.gesture.tool");// KOnsola adbs shell enter yapıp "dumpsys window | grep -E "mCurrentFocus" enter"
         capabilities.setCapability("appActivity", "com.davemac327.gesture.tool.GestureBuilderActivity");
         //Eğer appi  izinler atlayarak ana sayfada açılmasını istiyorsak aşağıdaki komutu kullanırız
-        // capabilities.setCapability("noReset",true);
+       capabilities.setCapability("noReset", true);
 
         AndroidDriver<MobileElement>
                 driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
+        if (driver.isDeviceLocked()){
+            driver.unlockDevice();
+        }
+
         System.out.println("App has been installed");
-        Thread.sleep(3000);
-        driver.findElementById("com.android.permissioncontroller:id/continue_button").click();
-        Thread.sleep(5000);
-        MobileElement Okbutton = driver.findElementByXPath("//android.widget.Button[@text='OK']");
-        Okbutton.click();
-        System.out.println("Permission confirmed");
+
+
 
         MobileElement homeScreenTitle = driver.findElementById("android:id/title");
         Assert.assertTrue(homeScreenTitle.isDisplayed());
         System.out.println("Ana sayda acildi");
+
+
+
+        MobileElement addGestureButtond = driver.findElementById("com.davemac327.gesture.tool:id/addButton");
+        addGestureButtond.click();
+        System.out.println("Add Gesture buttonuna basildi");
+
+
+        Thread.sleep(3000);
+        MobileElement textEntry = driver.findElementByClassName("android.widget.EditText");
+        textEntry.sendKeys("TechPro");
+        System.out.println("Text kutusuna metin girildi");
+        //Session kapat
+      //
+        //  driver.closeApp();
     }
 }
