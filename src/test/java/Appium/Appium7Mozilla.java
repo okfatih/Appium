@@ -23,7 +23,7 @@ public class Appium7Mozilla {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "RealDevice");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-        capabilities.setCapability(MobileCapabilityType.APP, "C:\\Users\\Admin\\IdeaProjects\\demo\\MobileTesting\\src\\Apps\\gestureTool.apk");
+     capabilities.setCapability(MobileCapabilityType.APP, "C:\\Users\\Admin\\IdeaProjects\\demo\\MobileTesting\\src\\Apps\\gestureTool.apk");
         capabilities.setCapability("appPackage", " org.mozilla.firefox");
         capabilities.setCapability("appActivity", "org.mozilla.firefox.App");
         AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
@@ -33,14 +33,14 @@ public class Appium7Mozilla {
         driver.get("https://www.amazon.com");
         System.out.println(driver.getContext() + "<=== First context when the app opened ");
 
-        Set<String>butunTurlerDS = driver.getContextHandles();
-        for (String tur:  butunTurlerDS
-        ) {
-            System.out.println(tur);
-            if (tur.contains("WEBVIEW_chrome")){
-                driver.context(tur);
-            }
-        }
+//        Set<String>butunTurlerDS = driver.getContextHandles();
+//        for (String tur:  butunTurlerDS
+//        ) {
+//            System.out.println(tur);
+//            if (tur.contains("WEBVIEW_chrome")){
+//                driver.context(tur);
+//            }
+//        }
         System.out.println(driver.getContext() +"<==Degisimden sonraki tur");
         Thread.sleep(7000);
 
